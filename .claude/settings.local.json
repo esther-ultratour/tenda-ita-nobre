@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"c:\\\\Users\\\\ULTRATOUR\\\\Documents\\\\GitHub\\\\modern-galery-colinas-vistacatole\" -Recurse -File | Measure-Object -Property Length -Sum | Select-Object Count, @{Name=\"TotalMB\";Expression={[math]::Round\\($_.Sum/1MB,2\\)}})",
+      "Bash(cd \"c:\\\\Users\\\\LEANDRO_ULTRA\\\\Documents\\\\GitHub\\\\modern-galery-grupoimpper-legacy\" && echo \"=== ALL FILES in new asset folders ===\" && find assets/Corporativo assets/Fotomontagem assets/Plantas assets/Residencial assets/videos -type f 2>/dev/null | sort && echo \"\" && echo \"=== search books/pdf broadly \\(repo + parent\\) ===\" && find . .. -maxdepth 3 -iname \"*.pdf\" 2>/dev/null | grep -v \"/.git/\" | head -20 && echo \"=== any non-image files in assets ===\" && find assets -type f ! -iname \"*.png\" ! -iname \"*.jpg\" ! -iname \"*.jpeg\" ! -iname \"*.mp4\" 2>/dev/null | grep -v \"/thumbs/\" | head)",
+      "Read(//c/Users/LEANDRO_ULTRA/Documents/GitHub/**)",
+      "PowerShell(& \"c:\\\\Users\\\\LEANDRO_ULTRA\\\\Documents\\\\GitHub\\\\modern-galery-grupoimpper-legacy\\\\generate_thumbs.ps1\")",
+      "Bash(cd \"c:\\\\Users\\\\LEANDRO_ULTRA\" && echo \"Bash cwd movido para fora do repo\")",
+      "Read(//c/Users/LEANDRO_ULTRA/**)",
+      "PowerShell(./deploy.ps1 -QuickHtml)",
+      "PowerShell(aws s3 cp fachada-interativa.html \"s3://skylineip/Tour Virtual/tauf/ferramentas/galeria/fachada-interativa.html\" --cache-control \"no-cache,no-store,must-revalidate\")",
+      "Bash(node -e ' *)"
+    ]
+  }
+}

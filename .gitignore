@@ -1,0 +1,14 @@
+# Videos pesados — hospedados direto no S3, fora do git
+assets/videos/
+assets/video/
+
+# Book de referencia (~52 MB) — material de apoio, nao versionar
+assets/*.pdf
+*.pdf
+
+# Lixo do Windows Explorer
+Thumbs.db
+
+# Renders originais (1,4 GB) — fonte das imagens otimizadas em assets/
+# Ficam só na máquina; o que sobe para o S3 é a versão WebP.
+_originais/
