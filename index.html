@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galeria — José Torres Sobrinho</title>
+  <title>Galeria — Itá Nobre</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Montserrat: a mesma família do texto corrido do book -->
@@ -12,40 +12,39 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* JOSÉ TORRES SOBRINHO · Saraiva de Rezende
-         --bg = marrom (542E1E), cor primária · --accent = pêssego (F7B581) e
-         creme (FFEAD9) · CD8859 = cobre do monograma */
-      --bg: #542E1E;            /* marrom — cor primária */
+      /* ITÁ NOBRE · Tenda
+         --bg = taupe (C3AEA1), fundo sólido da página · --ink = marrom escuro
+         (texto sobre o taupe) · --accent = marrom médio (estado ativo).
+         O lightbox e os rótulos sobre foto continuam escuros, com texto creme. */
+      --bg: #C3AEA1;            /* taupe — fundo da página */
       --bg-2: #2A1710;          /* marrom profundo — palco do lightbox */
-      --surface: #4A281A;       /* superfície de card (skeleton) */
-      --surface-2: #6A3B28;     /* superfície elevada / hover */
-      --dark: #FFEAD9;          /* foreground / texto principal (creme) */
-      --text-soft: rgba(255,234,217,0.74);
-      --border: rgba(255,234,217,0.26);
-      --border-strong: rgba(255,234,217,0.55);
-      --accent: #F7B581;        /* pêssego — cor secundária / estado ativo */
-      --accent-grad: linear-gradient(135deg, #FFEAD9 0%, #F7B581 100%);
-      --copper: #CD8859;        /* cobre — detalhes */
-      --accent-ink: #542E1E;    /* texto sobre o pêssego */
-      --accent-soft: rgba(247,181,129,0.18);
+      --surface: #B39E91;       /* superfície de card (skeleton) */
+      --surface-2: #A89084;     /* superfície elevada / hover */
+      --ink: #2E2019;           /* texto principal sobre o taupe */
+      --dark: #FFEAD9;          /* texto sobre fundo escuro (lightbox, rótulos sobre foto) */
+      --text-soft: rgba(46,32,25,0.74);
+      --border: rgba(46,32,25,0.22);
+      --border-strong: rgba(46,32,25,0.55);
+      --accent: #5A3A2B;        /* marrom — cor secundária / estado ativo */
+      --accent-grad: linear-gradient(135deg, #6B4636 0%, #4A2E22 100%);
+      --accent-ink: #FFFFFF;    /* texto sobre o marrom */
+      --accent-soft: rgba(90,58,43,0.14);
       --dark-bg: #2A1710;       /* backdrop do lightbox */
       --white: #FFFFFF;
       --plan-paper: #FFFFFF;    /* papel das plantas (desenho precisa de fundo claro) */
-      --plan-ink: #542E1E;
+      --plan-ink: #3A2A22;
       --font-serif: 'Montserrat', system-ui, sans-serif;
       --font-sans: 'Montserrat', system-ui, sans-serif;
       --ease: cubic-bezier(0.4, 0, 0.2, 1);
       --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    /* O bg.svg é o fundo do design: marrom com o monograma "JTS" em cobre,
-       que entra deslizando uma vez e fica. A cor sólida por baixo cobre o
-       instante antes de o SVG carregar. */
+    /* Fundo em cor sólida (substitui o antigo bg.svg). */
     html, body {
       height: 100%;
       overflow: hidden;
-      background: var(--bg) url('assets/brand/bg.svg') center / cover no-repeat;
-      color: var(--dark);
+      background: var(--bg);
+      color: var(--ink);
       font-family: var(--font-sans);
     }
 
@@ -71,8 +70,8 @@
     }
 
     #g-logo {
-      /* Logo JTS + "Edifício José Torres Sobrinho", já com o viewBox encostado
-         no desenho. Abaixo de ~80px o nome fica pequeno demais.
+      /* Logo Itá Nobre (traço escuro sobre o taupe). Abaixo de ~80px o nome
+         fica pequeno demais.
          A animação de escrita roda uma vez; com prefers-reduced-motion o
          próprio SVG pula direto para o quadro final. */
       height: clamp(80px, 8vw, 104px);
@@ -92,9 +91,9 @@
       justify-content: center;
       border-radius: 50%;
       transition: background 0.25s var(--ease), color 0.25s var(--ease);
-      color: var(--dark);
+      color: var(--ink);
     }
-    #btn-close:hover { background: var(--dark); color: var(--bg); border-color: var(--dark); }
+    #btn-close:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 
     /* ── FILTER SECTION ── */
     #g-filters {
@@ -112,8 +111,7 @@
     }
     #filter-main::-webkit-scrollbar { display: none; }
 
-    /* peso 600: creme sobre o marrom tem bom contraste; o traço mais
-       cheio mantém os rótulos pequenos legíveis */
+    /* peso 600: o traço mais cheio mantém os rótulos pequenos legíveis */
     .f-btn {
       padding: 7px 20px;
       border: 1px solid var(--border-strong);
@@ -124,13 +122,13 @@
       font-weight: 600;
       letter-spacing: 0.07em;
       text-transform: uppercase;
-      color: var(--dark);
+      color: var(--ink);
       white-space: nowrap;
       border-radius: 40px;
       transition: background 0.22s var(--ease), color 0.22s var(--ease), border-color 0.22s var(--ease), transform 0.15s var(--ease);
     }
     .f-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
-    .f-btn.active { background: var(--accent-grad); color: var(--accent-ink); border-color: var(--accent); box-shadow: 0 4px 14px rgba(0,0,0,0.35); }
+    .f-btn.active { background: var(--accent-grad); color: var(--accent-ink); border-color: var(--accent); box-shadow: 0 4px 14px rgba(46,32,25,0.28); }
     .f-btn:active { transform: scale(0.97); }
 
     /* Sub-filter */
@@ -163,13 +161,13 @@
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.05em;
-      color: var(--dark);
+      color: var(--ink);
       white-space: nowrap;
       border-radius: 40px;
       transition: border-color 0.22s var(--ease), background 0.22s var(--ease), color 0.22s var(--ease);
     }
     .sf-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
-    .sf-btn.active { background: var(--accent-grad); color: var(--accent-ink); border-color: var(--accent); box-shadow: 0 4px 14px rgba(0,0,0,0.35); }
+    .sf-btn.active { background: var(--accent-grad); color: var(--accent-ink); border-color: var(--accent); box-shadow: 0 4px 14px rgba(46,32,25,0.28); }
 
     /* ── GALLERY SCROLL ── */
     #g-scroll {
@@ -364,7 +362,7 @@
     .cob-badge {
       display: inline-block;
       padding: 3px 11px;
-      background: var(--bg);    /* o card de planta é branco: o selo vai no marrom */
+      background: var(--ink);   /* o card de planta é branco: o selo vai no marrom escuro */
       color: var(--white);
       font-size: 8.5px;
       font-weight: 600;
@@ -398,7 +396,7 @@
     .cob-note {
       font-size: 11px;
       letter-spacing: 0.02em;
-      color: rgba(84,46,30,0.72);
+      color: rgba(58,42,34,0.72);
       margin-top: 6px;
       min-height: 15px;
     }
@@ -422,8 +420,8 @@
       font-size: 10.5px;
       font-weight: 500;
       letter-spacing: 0.05em;
-      color: var(--dark);
-      opacity: 0.85;   /* legível já no estado inativo; a aba ativa é o sálvia cheio */
+      color: var(--ink);
+      opacity: 0.85;   /* legível já no estado inativo; a aba ativa é o marrom cheio */
       border-radius: 40px;
       white-space: nowrap;
       transition: background 0.22s var(--ease), color 0.22s var(--ease), opacity 0.22s;
@@ -507,7 +505,7 @@
     .cob-hint {
       font-size: 10px;
       letter-spacing: 0.05em;
-      color: rgba(84,46,30,0.62);
+      color: rgba(58,42,34,0.62);
       text-transform: uppercase;
     }
 
@@ -813,7 +811,7 @@
 
   <!-- Header -->
   <header id="g-header">
-    <img id="g-logo" src="assets/brand/logo.svg" alt="Edifício José Torres Sobrinho">
+    <img id="g-logo" src="assets/brand/logo.svg" alt="Itá Nobre">
     <button id="btn-close" title="Fechar galeria" aria-label="Fechar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16">
         <path d="M18 6L6 18M6 6l12 12"/>
@@ -886,104 +884,77 @@
 // os campos src com os nomes exatos dos arquivos.
 // ================================================================
 const GALLERY_CONFIG = {
-  projectName: 'JOSÉ TORRES SOBRINHO',
-  projectSub:  'Saraiva de Rezende',
+  projectName: 'ITÁ NOBRE',
+  projectSub:  'Tenda',
 
   categories: [
-    { id: 'fachada', label: 'Fachada' },
     {
       // Uma sub-categoria por ambiente.
       id: 'areas-comuns', label: 'Áreas Comuns',
       subs: [
+        { id: 'ac-todas',          label: 'Todas' },
         { id: 'ac-salao-de-festas', label: 'Salão de Festas' },
-        { id: 'ac-brinquedoteca', label: 'Brinquedoteca' },
-        { id: 'ac-coworking', label: 'Coworking' },
-        { id: 'ac-espaco-pet', label: 'Espaço Pet' },
+        { id: 'ac-churrasqueira',   label: 'Churrasqueira' },
+        { id: 'ac-piscina',         label: 'Piscina' },
+        { id: 'ac-campo',           label: 'Campo' },
+        { id: 'ac-infantil',        label: 'Espaço Infantil' },
+        { id: 'ac-pet-place',       label: 'Pet Place' },
+        { id: 'ac-saude-fitness',   label: 'Saúde e Fitness' },
       ]
     },
     {
       id: 'apartamento', label: 'Apartamento Decorado',
       subs: [
-        { id: 'ap-1s1q', label: '1 Suíte + 1 Quarto' },
-        { id: 'ap-1s2q', label: '1 Suíte + 2 Quartos' },
+        { id: 'ap-sala-cozinha', label: 'Sala e Cozinha' },
+        { id: 'ap-quartos',      label: 'Quartos e Banheiro' },
       ]
     },
     {
       id: 'plantas', label: 'Plantas',
       subs: [
-        { id: 'pl-tipologias', label: 'Tipologias' },
-        { id: 'pl-pavimento',  label: 'Pavimento Tipo' },
+        { id: 'pl-tipologias',  label: 'Tipologias' },
+        { id: 'pl-implantacao', label: 'Implantação' },
       ]
     },
   ],
 
   items: [
 
-    // ═══ FACHADA (torre + acesso) ═══
-    { id:1, type:'image', category:'fachada', title:'Fachada', subtitle:'Perspectiva da Esquina', src:'assets/fachada/torre-01.webp', thumb:'assets/miniaturas/fachada/torre-01.webp' },
-    { id:2, type:'image', category:'fachada', title:'Fachada', subtitle:'Vista da Torre', src:'assets/fachada/torre-02.webp', thumb:'assets/miniaturas/fachada/torre-02.webp' },
-    { id:3, type:'image', category:'fachada', title:'Fachada', subtitle:'Vista Geral com Entorno', src:'assets/fachada/torre-03.webp', thumb:'assets/miniaturas/fachada/torre-03.webp' },
-    { id:4, type:'image', category:'fachada', title:'Acesso', subtitle:'Portaria e Fachada Frontal', src:'assets/fachada/acesso-01.webp', thumb:'assets/miniaturas/fachada/acesso-01.webp' },
-    { id:5, type:'image', category:'fachada', title:'Acesso', subtitle:'Entrada e Paisagismo', src:'assets/fachada/acesso-02.webp', thumb:'assets/miniaturas/fachada/acesso-02.webp' },
-
     // ═══ ÁREAS COMUNS › SALÃO DE FESTAS ═══
-    { id:20, type:'image', category:'areas-comuns', subCategory:'ac-salao-de-festas', title:'Salão de Festas', subtitle:'Vista Geral', src:'assets/areas-comuns/salao-de-festas-01.webp', thumb:'assets/miniaturas/areas-comuns/salao-de-festas-01.webp' },
-    { id:21, type:'image', category:'areas-comuns', subCategory:'ac-salao-de-festas', title:'Salão de Festas', subtitle:'Mesas e Lustre', src:'assets/areas-comuns/salao-de-festas-02.webp', thumb:'assets/miniaturas/areas-comuns/salao-de-festas-02.webp' },
-    { id:22, type:'image', category:'areas-comuns', subCategory:'ac-salao-de-festas', title:'Salão de Festas', subtitle:'Mesa Central', src:'assets/areas-comuns/salao-de-festas-03.webp', thumb:'assets/miniaturas/areas-comuns/salao-de-festas-03.webp' },
-    { id:23, type:'image', category:'areas-comuns', subCategory:'ac-salao-de-festas', title:'Salão de Festas', subtitle:'Bancada e Mesas', src:'assets/areas-comuns/salao-de-festas-04.webp', thumb:'assets/miniaturas/areas-comuns/salao-de-festas-04.webp' },
-    { id:24, type:'image', category:'areas-comuns', subCategory:'ac-salao-de-festas', title:'Salão de Festas', subtitle:'Copa e Estar', src:'assets/areas-comuns/salao-de-festas-05.webp', thumb:'assets/miniaturas/areas-comuns/salao-de-festas-05.webp' },
-    { id:25, type:'image', category:'areas-comuns', subCategory:'ac-salao-de-festas', title:'Salão de Festas', subtitle:'Banco Corrido e Jardineira', src:'assets/areas-comuns/salao-de-festas-06.webp', thumb:'assets/miniaturas/areas-comuns/salao-de-festas-06.webp' },
-    { id:26, type:'image', category:'areas-comuns', subCategory:'ac-salao-de-festas', title:'Salão de Festas', subtitle:'Salão e Espelho', src:'assets/areas-comuns/salao-de-festas-07.webp', thumb:'assets/miniaturas/areas-comuns/salao-de-festas-07.webp' },
-    { id:27, type:'image', category:'areas-comuns', subCategory:'ac-salao-de-festas', title:'Salão de Festas', subtitle:'Bancada e Adega', src:'assets/areas-comuns/salao-de-festas-08.webp', thumb:'assets/miniaturas/areas-comuns/salao-de-festas-08.webp' },
+    { id:20, type:'image', category:'areas-comuns', subCategory:'ac-salao-de-festas', title:'Salão de Festas', subtitle:'Estar e Mesas', src:'assets/areas-comuns/salao-de-festas-01.webp', thumb:'assets/miniaturas/areas-comuns/salao-de-festas-01.webp' },
 
-    // ═══ ÁREAS COMUNS › BRINQUEDOTECA ═══
-    { id:30, type:'image', category:'areas-comuns', subCategory:'ac-brinquedoteca', title:'Brinquedoteca', subtitle:'Vista Geral', src:'assets/areas-comuns/brinquedoteca-01.webp', thumb:'assets/miniaturas/areas-comuns/brinquedoteca-01.webp' },
-    { id:31, type:'image', category:'areas-comuns', subCategory:'ac-brinquedoteca', title:'Brinquedoteca', subtitle:'Nichos e Mesas', src:'assets/areas-comuns/brinquedoteca-02.webp', thumb:'assets/miniaturas/areas-comuns/brinquedoteca-02.webp' },
-    { id:32, type:'image', category:'areas-comuns', subCategory:'ac-brinquedoteca', title:'Brinquedoteca', subtitle:'Escorregador e Piscina de Bolinhas', src:'assets/areas-comuns/brinquedoteca-03.webp', thumb:'assets/miniaturas/areas-comuns/brinquedoteca-03.webp' },
+    // ═══ ÁREAS COMUNS › CHURRASQUEIRA ═══
+    { id:30, type:'image', category:'areas-comuns', subCategory:'ac-churrasqueira', title:'Churrasqueira Gourmet', subtitle:'Cozinha e Mesas', src:'assets/areas-comuns/churrasqueira-01.webp', thumb:'assets/miniaturas/areas-comuns/churrasqueira-01.webp' },
+    { id:31, type:'image', category:'areas-comuns', subCategory:'ac-churrasqueira', title:'Churrasqueira', subtitle:'Mesas e Jardim', src:'assets/areas-comuns/churrasqueira-02.webp', thumb:'assets/miniaturas/areas-comuns/churrasqueira-02.webp' },
 
-    // ═══ ÁREAS COMUNS › COWORKING ═══
-    { id:40, type:'image', category:'areas-comuns', subCategory:'ac-coworking', title:'Coworking', subtitle:'Mesa de Reunião e Estar', src:'assets/areas-comuns/coworking-01.webp', thumb:'assets/miniaturas/areas-comuns/coworking-01.webp' },
-    { id:41, type:'image', category:'areas-comuns', subCategory:'ac-coworking', title:'Coworking', subtitle:'Estações de Trabalho', src:'assets/areas-comuns/coworking-02.webp', thumb:'assets/miniaturas/areas-comuns/coworking-02.webp' },
-    { id:42, type:'image', category:'areas-comuns', subCategory:'ac-coworking', title:'Coworking', subtitle:'Estar e Copa', src:'assets/areas-comuns/coworking-03.webp', thumb:'assets/miniaturas/areas-comuns/coworking-03.webp' },
+    // ═══ ÁREAS COMUNS › PISCINA ═══
+    { id:40, type:'image', category:'areas-comuns', subCategory:'ac-piscina', title:'Piscina', subtitle:'Piscina e Solário', src:'assets/areas-comuns/piscina-01.webp', thumb:'assets/miniaturas/areas-comuns/piscina-01.webp' },
 
-    // ═══ ÁREAS COMUNS › ESPAÇO PET ═══
-    { id:50, type:'image', category:'areas-comuns', subCategory:'ac-espaco-pet', title:'Espaço Pet', subtitle:'Gramado e Obstáculos', src:'assets/areas-comuns/espaco-pet-01.webp', thumb:'assets/miniaturas/areas-comuns/espaco-pet-01.webp' },
-    { id:51, type:'image', category:'areas-comuns', subCategory:'ac-espaco-pet', title:'Espaço Pet', subtitle:'Circuito de Agilidade', src:'assets/areas-comuns/espaco-pet-02.webp', thumb:'assets/miniaturas/areas-comuns/espaco-pet-02.webp' },
-    { id:52, type:'image', category:'areas-comuns', subCategory:'ac-espaco-pet', title:'Espaço Pet', subtitle:'Aro e Painel Pet', src:'assets/areas-comuns/espaco-pet-03.webp', thumb:'assets/miniaturas/areas-comuns/espaco-pet-03.webp' },
+    // ═══ ÁREAS COMUNS › CAMPO ═══
+    { id:50, type:'image', category:'areas-comuns', subCategory:'ac-campo', title:'Campo', subtitle:'Campo de Futebol', src:'assets/areas-comuns/campo-01.webp', thumb:'assets/miniaturas/areas-comuns/campo-01.webp' },
 
-    // ═══ APARTAMENTO DECORADO › 1 SUÍTE + 1 QUARTO ═══
-    { id:100, type:'image', category:'apartamento', subCategory:'ap-1s1q', title:'Sala e Cozinha', subtitle:'Estar e Jantar', src:'assets/apartamento/1-suite-1-quarto-01.webp', thumb:'assets/miniaturas/apartamento/1-suite-1-quarto-01.webp' },
-    { id:101, type:'image', category:'apartamento', subCategory:'ap-1s1q', title:'Sala e Cozinha', subtitle:'Cozinha e Bancada de Jantar', src:'assets/apartamento/1-suite-1-quarto-02.webp', thumb:'assets/miniaturas/apartamento/1-suite-1-quarto-02.webp' },
-    { id:102, type:'image', category:'apartamento', subCategory:'ap-1s1q', title:'Sala e Cozinha', subtitle:'Sofá e Mesa de Jantar', src:'assets/apartamento/1-suite-1-quarto-03.webp', thumb:'assets/miniaturas/apartamento/1-suite-1-quarto-03.webp' },
-    { id:103, type:'image', category:'apartamento', subCategory:'ap-1s1q', title:'Sala e Cozinha', subtitle:'Bancada e Circulação', src:'assets/apartamento/1-suite-1-quarto-04.webp', thumb:'assets/miniaturas/apartamento/1-suite-1-quarto-04.webp' },
-    { id:104, type:'image', category:'apartamento', subCategory:'ap-1s1q', title:'Sala e Cozinha', subtitle:'Cozinha e Estar', src:'assets/apartamento/1-suite-1-quarto-05.webp', thumb:'assets/miniaturas/apartamento/1-suite-1-quarto-05.webp' },
-    { id:105, type:'image', category:'apartamento', subCategory:'ap-1s1q', title:'Dormitório', subtitle:'Cama e Bancada de Trabalho', src:'assets/apartamento/1-suite-1-quarto-06.webp', thumb:'assets/miniaturas/apartamento/1-suite-1-quarto-06.webp' },
-    { id:106, type:'image', category:'apartamento', subCategory:'ap-1s1q', title:'Dormitório', subtitle:'Cabeceira e Armário', src:'assets/apartamento/1-suite-1-quarto-07.webp', thumb:'assets/miniaturas/apartamento/1-suite-1-quarto-07.webp' },
-    { id:107, type:'image', category:'apartamento', subCategory:'ap-1s1q', title:'Dormitório', subtitle:'Cama e TV', src:'assets/apartamento/1-suite-1-quarto-08.webp', thumb:'assets/miniaturas/apartamento/1-suite-1-quarto-08.webp' },
-    { id:108, type:'image', category:'apartamento', subCategory:'ap-1s1q', title:'Dormitório', subtitle:'Cama e Espelhos', src:'assets/apartamento/1-suite-1-quarto-09.webp', thumb:'assets/miniaturas/apartamento/1-suite-1-quarto-09.webp' },
-    { id:109, type:'image', category:'apartamento', subCategory:'ap-1s1q', title:'Dormitório', subtitle:'Cama e Painel de Mármore', src:'assets/apartamento/1-suite-1-quarto-10.webp', thumb:'assets/miniaturas/apartamento/1-suite-1-quarto-10.webp' },
-    { id:110, type:'image', category:'apartamento', subCategory:'ap-1s1q', title:'Dormitório', subtitle:'Painel de TV e Penteadeira', src:'assets/apartamento/1-suite-1-quarto-11.webp', thumb:'assets/miniaturas/apartamento/1-suite-1-quarto-11.webp' },
-    { id:111, type:'image', category:'apartamento', subCategory:'ap-1s1q', title:'Dormitório', subtitle:'Painel de TV e Cama', src:'assets/apartamento/1-suite-1-quarto-12.webp', thumb:'assets/miniaturas/apartamento/1-suite-1-quarto-12.webp' },
+    // ═══ ÁREAS COMUNS › ESPAÇO INFANTIL ═══
+    { id:60, type:'image', category:'areas-comuns', subCategory:'ac-infantil', title:'Play Kids', subtitle:'Playground', src:'assets/areas-comuns/infantil-01.webp', thumb:'assets/miniaturas/areas-comuns/infantil-01.webp' },
+    { id:61, type:'image', category:'areas-comuns', subCategory:'ac-infantil', title:'Brinquedoteca', subtitle:'Brinquedos e Piscina de Bolinhas', src:'assets/areas-comuns/infantil-02.webp', thumb:'assets/miniaturas/areas-comuns/infantil-02.webp' },
 
-    // ═══ APARTAMENTO DECORADO › 1 SUÍTE + 2 QUARTOS ═══
-    { id:130, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Sala e Cozinha', subtitle:'Estar e Jantar', src:'assets/apartamento/1-suite-2-quartos-01.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-01.webp' },
-    { id:131, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Sala e Cozinha', subtitle:'Mesa de Jantar e Cozinha', src:'assets/apartamento/1-suite-2-quartos-02.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-02.webp' },
-    { id:132, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Sala e Cozinha', subtitle:'Banco Corrido e Mesa', src:'assets/apartamento/1-suite-2-quartos-03.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-03.webp' },
-    { id:133, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Sala e Cozinha', subtitle:'Cozinha e Estar', src:'assets/apartamento/1-suite-2-quartos-04.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-04.webp' },
-    { id:134, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Sala e Cozinha', subtitle:'Cozinha e Painel de Madeira', src:'assets/apartamento/1-suite-2-quartos-05.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-05.webp' },
-    { id:135, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Dormitório', subtitle:'Cama e Nichos', src:'assets/apartamento/1-suite-2-quartos-06.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-06.webp' },
-    { id:136, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Dormitório', subtitle:'Penteadeira e TV', src:'assets/apartamento/1-suite-2-quartos-07.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-07.webp' },
-    { id:137, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Dormitório', subtitle:'Cama, Penteadeira e Espelho', src:'assets/apartamento/1-suite-2-quartos-08.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-08.webp' },
-    { id:138, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Dormitório', subtitle:'Cabeceira Estofada', src:'assets/apartamento/1-suite-2-quartos-09.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-09.webp' },
-    { id:139, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Dormitório', subtitle:'Cabeceira e Armário', src:'assets/apartamento/1-suite-2-quartos-10.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-10.webp' },
-    { id:140, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Dormitório', subtitle:'Painel de TV e Cama', src:'assets/apartamento/1-suite-2-quartos-11.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-11.webp' },
-    { id:141, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Dormitório', subtitle:'Closet e Cama', src:'assets/apartamento/1-suite-2-quartos-12.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-12.webp' },
-    { id:142, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Dormitório', subtitle:'Closet de Vidro e TV', src:'assets/apartamento/1-suite-2-quartos-13.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-13.webp' },
-    { id:143, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Dormitório', subtitle:'Cama e Closet', src:'assets/apartamento/1-suite-2-quartos-14.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-14.webp' },
-    { id:144, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Banheiro', subtitle:'Bancada e Box', src:'assets/apartamento/1-suite-2-quartos-15.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-15.webp' },
-    { id:145, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Banheiro', subtitle:'Cuba e Box', src:'assets/apartamento/1-suite-2-quartos-16.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-16.webp' },
-    { id:146, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Banheiro', subtitle:'Cuba Dupla e Box', src:'assets/apartamento/1-suite-2-quartos-17.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-17.webp' },
-    { id:147, type:'image', category:'apartamento', subCategory:'ap-1s2q', title:'Banheiro', subtitle:'Cuba Dupla e Espelho', src:'assets/apartamento/1-suite-2-quartos-18.webp', thumb:'assets/miniaturas/apartamento/1-suite-2-quartos-18.webp' },
+    // ═══ ÁREAS COMUNS › PET PLACE ═══
+    { id:70, type:'image', category:'areas-comuns', subCategory:'ac-pet-place', title:'Pet Place', subtitle:'Gramado e Obstáculos', src:'assets/areas-comuns/pet-place-01.webp', thumb:'assets/miniaturas/areas-comuns/pet-place-01.webp' },
+
+    // ═══ ÁREAS COMUNS › SAÚDE E FITNESS ═══
+    { id:80, type:'image', category:'areas-comuns', subCategory:'ac-saude-fitness', title:'Espaço Saúde', subtitle:'Sala de Ginástica', src:'assets/areas-comuns/saude-fitness-01.webp', thumb:'assets/miniaturas/areas-comuns/saude-fitness-01.webp' },
+    { id:81, type:'image', category:'areas-comuns', subCategory:'ac-saude-fitness', title:'Estação de Ginástica', subtitle:'Área Externa', src:'assets/areas-comuns/saude-fitness-02.webp', thumb:'assets/miniaturas/areas-comuns/saude-fitness-02.webp' },
+
+    // ═══ APARTAMENTO DECORADO › SALA E COZINHA ═══
+    { id:100, type:'image', category:'apartamento', subCategory:'ap-sala-cozinha', title:'Sala', subtitle:'Estar e Jantar', src:'assets/apartamento/sala-01.webp', thumb:'assets/miniaturas/apartamento/sala-01.webp' },
+    { id:101, type:'image', category:'apartamento', subCategory:'ap-sala-cozinha', title:'Cozinha', subtitle:'Bancada e Janela', src:'assets/apartamento/sala-02.webp', thumb:'assets/miniaturas/apartamento/sala-02.webp' },
+    { id:102, type:'image', category:'apartamento', subCategory:'ap-sala-cozinha', title:'Cozinha', subtitle:'Com Varanda Estendida', src:'assets/apartamento/sala-03.webp', thumb:'assets/miniaturas/apartamento/sala-03.webp' },
+    { id:103, type:'image', category:'apartamento', subCategory:'ap-sala-cozinha', title:'Varanda', subtitle:'Varanda Estendida', src:'assets/apartamento/sala-04.webp', thumb:'assets/miniaturas/apartamento/sala-04.webp' },
+
+    // ═══ APARTAMENTO DECORADO › QUARTOS E BANHEIRO ═══
+    { id:120, type:'image', category:'apartamento', subCategory:'ap-quartos', title:'Dormitório', subtitle:'Quarto de Casal', src:'assets/apartamento/quartos-01.webp', thumb:'assets/miniaturas/apartamento/quartos-01.webp' },
+    { id:121, type:'image', category:'apartamento', subCategory:'ap-quartos', title:'Dormitório', subtitle:'Quarto de Casal com Penteadeira', src:'assets/apartamento/quartos-02.webp', thumb:'assets/miniaturas/apartamento/quartos-02.webp' },
+    { id:122, type:'image', category:'apartamento', subCategory:'ap-quartos', title:'Dormitório', subtitle:'Quarto Infantil', src:'assets/apartamento/quartos-03.webp', thumb:'assets/miniaturas/apartamento/quartos-03.webp' },
+    { id:123, type:'image', category:'apartamento', subCategory:'ap-quartos', title:'Banheiro', subtitle:'Bancada e Box', src:'assets/apartamento/quartos-04.webp', thumb:'assets/miniaturas/apartamento/quartos-04.webp' },
 
     // ═══ PLANTAS › TIPOLOGIAS ═══
     { id:300, type:'cobertura-plan', category:'plantas', subCategory:'pl-tipologias',
@@ -992,18 +963,18 @@ const GALLERY_CONFIG = {
       hint:'2 plantas — alterne nas abas · toque para ampliar',
       notice:'Plantas humanizadas — imagens meramente ilustrativas.',
       floors:[
-        { label:'1 Suíte + 1 Quarto',  note:'Suíte e dormitório',    src:'assets/plantas/1-suite-1-quarto.webp',  thumb:'assets/miniaturas/plantas/1-suite-1-quarto.webp' },
-        { label:'1 Suíte + 2 Quartos', note:'Suíte e 2 dormitórios', src:'assets/plantas/1-suite-2-quartos.webp', thumb:'assets/miniaturas/plantas/1-suite-2-quartos.webp' },
+        { label:'Planta Tipo',           note:'Planta humanizada',                       src:'assets/plantas/planta-tipo.webp',         thumb:'assets/miniaturas/plantas/planta-tipo.webp' },
+        { label:'Com Varanda Estendida', note:'Planta humanizada com varanda estendida', src:'assets/plantas/planta-tipo-varanda.webp', thumb:'assets/miniaturas/plantas/planta-tipo-varanda.webp' },
     ]},
 
-    // ═══ PLANTAS › PAVIMENTO TIPO ═══
-    { id:320, type:'cobertura-plan', category:'plantas', subCategory:'pl-pavimento',
-      title:'Pavimento Tipo', subtitle:'Planta humanizada',
-      badge:'Planta',
+    // ═══ PLANTAS › IMPLANTAÇÃO ═══
+    { id:320, type:'cobertura-plan', category:'plantas', subCategory:'pl-implantacao',
+      title:'Implantação', subtitle:'Implantação do empreendimento',
+      badge:'Implantação',
       hint:'Toque para ampliar',
-      notice:'Planta humanizada — imagem meramente ilustrativa.',
+      notice:'Implantação — imagem meramente ilustrativa.',
       floors:[
-        { label:'Pavimento Tipo', note:'8 apartamentos por andar', src:'assets/plantas/pavimento-tipo.webp', thumb:'assets/miniaturas/plantas/pavimento-tipo.webp' },
+        { label:'Implantação', note:'Implantação geral', src:'assets/plantas/implantacao.webp', thumb:'assets/miniaturas/plantas/implantacao.webp' },
     ]},
   ],
 };
@@ -1113,7 +1084,7 @@ function filteredItems() {
       if (item.subCategory !== st.cat) return false;
     } else {
       if (st.cat && item.category !== st.cat) return false;
-      if (st.sub && item.subCategory !== st.sub) return false;
+      if (st.sub && st.sub !== 'ac-todas' && item.subCategory !== st.sub) return false;  // 'ac-todas' = sem filtro de sub
     }
     return true;
   });
@@ -1375,7 +1346,7 @@ function init() {
     st.cat = DISPLAY_CATS[0].id;  // primeira tipologia de plantas
     st.sub = null;
   } else {
-    st.cat = DISPLAY_CATS[0].id;               // 'fachada'
+    st.cat = DISPLAY_CATS[0].id;               // 'areas-comuns'
     const c0 = getCat(st.cat);
     st.sub = (c0 && c0.subs && c0.subs.length) ? c0.subs[0].id : null;  // pré-seleciona 1ª sub
   }

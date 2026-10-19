@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vídeo — José Torres Sobrinho</title>
+  <title>Vídeo — Itá Nobre</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,25 +11,25 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* José Torres Sobrinho — marrom (primária) + pêssego/creme (secundárias) */
-      --bg:            #542E1E;   /* marrom — cor primária */
-      --dark:          #FFEAD9;   /* texto (creme) */
-      --border:        rgba(255,234,217,0.26);
-      --border-strong: rgba(255,234,217,0.55);
-      --accent:        #F7B581;   /* pêssego — cor secundária */
-      --accent-ink:    #542E1E;
+      /* Itá Nobre — taupe (fundo) + marrom escuro (texto) */
+      --bg:            #C3AEA1;   /* taupe — fundo da página */
+      --ink:           #2E2019;   /* texto sobre o taupe */
+      --border:        rgba(46,32,25,0.22);
+      --border-strong: rgba(46,32,25,0.55);
+      --accent:        #5A3A2B;   /* marrom — cor secundária */
+      --accent-ink:    #FFFFFF;
       --video-bg:      #2A1710;   /* palco do vídeo */
       --font-serif:    'Montserrat', system-ui, sans-serif;
       --font-sans:     'Montserrat', system-ui, sans-serif;
       --ease:          cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* bg.svg: verde com o monograma "T" a 10 %, que entra uma vez e fica */
+    /* Fundo em cor sólida (substitui o antigo bg.svg). */
     html, body {
       height: 100%;
       overflow: hidden;
-      background: var(--bg) url('assets/brand/bg.svg') center / cover no-repeat;
-      color: var(--dark);
+      background: var(--bg);
+      color: var(--ink);
       font-family: var(--font-sans);
     }
 
@@ -66,7 +66,7 @@
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       border-radius: 50%;
-      color: var(--dark);
+      color: var(--ink);
       transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
       flex-shrink: 0;
     }
@@ -142,7 +142,7 @@
 <div id="vg-root">
   <header id="vg-header">
     <div id="vg-brand">
-      <img id="vg-logo" src="assets/brand/logo.svg" alt="Edifício José Torres Sobrinho">
+      <img id="vg-logo" src="assets/brand/logo.svg" alt="Itá Nobre">
     </div>
     <button id="btn-close" title="Fechar" aria-label="Fechar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16">
@@ -153,7 +153,7 @@
 
   <div id="vg-stage">
     <video id="vg-player"
-           src="assets/video/video-torres.mp4"
+           src="assets/video/video-ita-nobre.mp4"
            autoplay playsinline controls
            preload="auto">
     </video>

@@ -1,4 +1,4 @@
-# Trechos para colar no 3DVista — José Torres Sobrinho
+# Trechos para colar no 3DVista — Itá Nobre
 
 Copie daqui. Cada bloco é independente.
 
@@ -9,7 +9,7 @@ Copie daqui. Cada bloco é independente.
 ```js
 (function(){
   var s = document.createElement('script');
-  s.src = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/saraiva-rezende/torres/ferramentas/inject.js?v=' + Date.now();
+  s.src = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/TENDA/ferramentas/galeria/ita+nobre/inject.js?v=' + Date.now();
   document.head.appendChild(s);
 })();
 ```

@@ -1,5 +1,5 @@
 <#
-  deploy.ps1 — Deploy da galeria Jose Torres Sobrinho (Saraiva de Rezende) para o AWS S3.
+  deploy.ps1 — Deploy da galeria Ita Nobre (Tenda) para o AWS S3.
 
   Uso:
     ./deploy.ps1             # sync completo + cache-control no HTML/JS
@@ -17,7 +17,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$Bucket = 's3://skylineip/Tour Virtual/saraiva-rezende/torres/ferramentas'
+$Bucket = 's3://skylineip/Tour Virtual/TENDA/ferramentas/galeria/ita nobre'
 $NoCache = 'no-cache,no-store,must-revalidate'
 
 Set-Location -Path $PSScriptRoot
@@ -51,16 +51,23 @@ else {
   }
 
   # Sobe SO o que a galeria consome. Fica de fora: _originais/ (material
-  # entregue), scripts/docs, e as sobras do template anterior (assets/thumbs/,
-  # fachada-interativa.html), que nao pertencem a este empreendimento.
+  # entregue) e scripts/docs.
   aws s3 sync . "$Bucket/" `
     --exclude "*" `
     --include "index.html" --include "video-gallery.html" --include "inject.js" `
-    --include "assets/brand/*" --include "assets/fachada/*" --include "assets/areas-comuns/*" --include "assets/apartamento/*" `
-    --include "assets/plantas/*" --include "assets/miniaturas/*" --include "assets/video/*" `
+    --include "assets/brand/*" --include "assets/areas-comuns/*" --include "assets/apartamento/*" `
+    --include "assets/miniaturas/*" --include "assets/video/*" `
     --exclude "*Thumbs.db" `
     @videoExclude `
     --delete
+
+  # Plantas: no Windows a pasta local pode se chamar "Plantas" (o filtro do sync
+  # distingue maiusculas) — sobe sempre para o prefixo minusculo, que e o que o
+  # index.html referencia (o S3 e case-sensitive).
+  $plantas = Get-ChildItem assets -Directory | Where-Object { $_.Name -ieq 'plantas' } | Select-Object -First 1
+  if ($plantas) {
+    aws s3 sync $plantas.FullName "$Bucket/assets/plantas/" --exclude "*Thumbs.db" --delete
+  }
 
   # HTML/JS precisam de cache-control para o 3DVista nunca servir versao cacheada
   Write-Host 'Aplicando cache-control no HTML/JS...' -ForegroundColor Green
@@ -70,4 +77,4 @@ else {
 }
 
 Write-Host 'Deploy concluido.' -ForegroundColor Green
-Write-Host "Base: https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/saraiva-rezende/torres/ferramentas/" -ForegroundColor DarkGray
+Write-Host "Base: https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/TENDA/ferramentas/galeria/ita+nobre/" -ForegroundColor DarkGray

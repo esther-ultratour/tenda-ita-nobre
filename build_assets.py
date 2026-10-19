@@ -3,8 +3,7 @@
 build_assets.py — Regera assets/ a partir do material entregue em `_originais/`.
 
 `_originais/` (fora do git) guarda o material como veio da incorporadora:
-imagens/ (renders 1080 px), plantas/ (PNG com transparência), design/ (logo +
-bg em SVG animado). O de-para render -> nome final fica em `assets-map.tsv`
+imagens/ (renders 1080 px), plantas/ (PNG/TIF com transparência). O de-para render -> nome final fica em `assets-map.tsv`
 (TAB entre as colunas).
 
   assets/<destino>.webp              imagem do lightbox  (lado maior <= 2600 px, q80)
@@ -18,12 +17,10 @@ soltos) e com margem branca em volta. Plantas: lightbox <= 3000 px q86, grade
 Uso:
     python build_assets.py            # gera só o que falta
     python build_assets.py --force    # regera tudo
-    python build_assets.py --brand    # regera logo + fundo (SVG) em assets/brand/
 
 Requisito: Pillow (pip install pillow), com suporte a WebP.
 """
 import argparse
-import re
 import sys
 import unicodedata
 from pathlib import Path
@@ -38,11 +35,6 @@ FULL_W, FULL_Q = 2600, 80
 THUMB_W, THUMB_Q = 900, 72
 PLAN_FULL_W, PLAN_FULL_Q = 3000, 86
 PLAN_THUMB_W, PLAN_THUMB_Q = 1400, 78
-
-# viewBox do logo encostado no desenho (o quadro original é 600 x 600 com muita sobra);
-# medido no quadro final da animação: x, y, largura, altura
-LOGO_VIEWBOX = (23, 64, 554, 473)
-
 
 def nfc(s):
     return unicodedata.normalize('NFC', s)
@@ -118,39 +110,10 @@ def build_images(force):
     print(f'Imagens: {done} geradas, {skip} já atualizadas.')
 
 
-# ── MARCA ──────────────────────────────────────────────────────────
-# Os SVGs do design vêm com as animações em `infinite`: o logo se reescreveria
-# a cada 8 s e o monograma do fundo piscaria a cada 2 s. Aqui viram `1 both` —
-# tocam UMA vez e congelam no quadro final. No logo o estado-base (sem
-# animação) fica desmontado: por isso o reduced-motion NÃO desliga a animação,
-# só a reduz a ~0 ms (pula direto para o quadro final).
-def build_brand():
-    once = re.compile(r'(\d+(?:\.\d+)?s linear) infinite')
-    reduced = ('@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.001ms !important; '
-               'animation-delay: 0s !important; } }')
-    (OUT / 'brand').mkdir(parents=True, exist_ok=True)
-
-    logo = once.sub(r'\1 1 both', (SRC / 'design' / 'logo-torres.svg').read_text(encoding='utf-8'))
-    if LOGO_VIEWBOX:
-        x, y, w, h = LOGO_VIEWBOX
-        logo = logo.replace('width="600" height="600" viewBox="0 0 600 600"',
-                            f'width="{w}" height="{h}" viewBox="{x} {y} {w} {h}"')
-    logo = logo.replace('</style>', reduced + '\n</style>')
-    (OUT / 'brand' / 'logo.svg').write_text(logo, encoding='utf-8', newline='\n')
-
-    bg = once.sub(r'\1 1 both', (SRC / 'design' / 'bg-torres.svg').read_text(encoding='utf-8'))
-    bg = bg.replace('</style>', reduced + '\n</style>')
-    (OUT / 'brand' / 'bg.svg').write_text(bg, encoding='utf-8', newline='\n')
-    print('Marca regerada (assets/brand/logo.svg, bg.svg).')
-
-
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('--force', action='store_true')
-    ap.add_argument('--brand', action='store_true')
     a = ap.parse_args()
     if not SRC.is_dir():
         sys.exit(f"ERRO: pasta '{SRC.name}' não encontrada (material original).")
     build_images(a.force)
-    if a.brand:
-        build_brand()
