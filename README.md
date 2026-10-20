@@ -38,7 +38,7 @@ ita nobre/
     ├── brand/            ← logo.svg (traço escuro; a animação toca uma vez)
     ├── areas-comuns/     ← 10 imagens, uma sub-categoria por ambiente
     ├── apartamento/      ← decorado: sala/cozinha/varanda (4) + quartos/banheiro (4)
-    ├── plantas/          ← 2 plantas tipo + implantação, fundo branco
+    ├── plantas/          ← 2 plantas tipo + bolotário, fundo branco
     ├── miniaturas/       ← espelha as pastas acima (grade)
     └── video/            ← vídeo 1080p (gitignored; ainda não entregue)
 ```
@@ -55,7 +55,7 @@ ita nobre/
 |-----------|----------------|
 | Áreas Comuns | Todas · Salão de Festas · Churrasqueira · Piscina · Campo · Espaço Infantil · Pet Place · Saúde e Fitness |
 | Apartamento Decorado | Sala e Cozinha · Quartos e Banheiro |
-| Plantas | Tipologias (Planta Tipo / Com Varanda Estendida) · Implantação |
+| Plantas | Tipologias (Planta Tipo / Com Varanda Estendida) · Bolotário |
 
 ---
 
